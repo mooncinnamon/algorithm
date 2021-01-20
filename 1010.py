@@ -15,5 +15,5 @@ while i < loop_num:
     i += 1
     x, y = map(int, sys.stdin.readline().rstrip().split())
 
-    num = int(factorial(y)//factorial(x)//factorial(y-x))
+    num = int(factorial(y) // factorial(x) // factorial(y - x))
     print(num)
