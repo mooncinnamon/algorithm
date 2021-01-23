@@ -2,20 +2,19 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        word = []
-        length = 0
-        lengthCheck = 0
-        for char in list(s):
-            if str(char) in word:
-                if len(word) > length:
-                    length = len(word)
-                word = [char]
+        word = ''
+        word_list = []
+        if s is ' ':
+            return 1
+        for index in range(len(s)):
+            same_pos = word.find(s[index])
+            word += s[index]
+            if same_pos is not -1:
+                word_list.append(len(word) - 1)
+                word = word[same_pos + 1:]
             else:
-                word.append(char)
-                lengthCheck += 1
-        if len(s) is lengthCheck:
-            return len(s)
-        return length if len(word) < length else len(word)
+                word_list.append(len(word))
+        return max(word_list) if len(word_list) else 0
 
 
 if __name__ == '__main__':
@@ -32,3 +31,7 @@ if __name__ == '__main__':
     print(testCase5)
     testCase6 = solution.lengthOfLongestSubstring("dvdf")
     print(testCase6)
+    testCase7 = solution.lengthOfLongestSubstring("aabaab!bb")
+    print(testCase7)
+    testCase8 = solution.lengthOfLongestSubstring("")
+    print(testCase8)
