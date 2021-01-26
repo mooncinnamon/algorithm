@@ -4,16 +4,29 @@ from unittest import TestCase, main
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
+        left = 0
+        right = len(height) - 1
+        move = True  # True is Left, False is Right
         max = 0
+        while left != right:
+            col = height[left] if height[left] < height[right] else height[right]
+            row = right - left
+            val = col * row
 
-        for left in range(len(height)):
-            for right in range(left + 1, len(height)):
-                col = height[right] if height[right] < height[left] else height[left]
-                row = right - left
-                val = col * row
-                if max < val:
-                    max = val
+            if max < val:
+                max = val
 
+            if height[left] < height[right]:
+                left += 1
+                move = True
+            elif height[left] == height[right]:
+                if move:
+                    right -= 1
+                else:
+                    left += 1
+            elif height[left] > height[right]:
+                right -= 1
+                move = False
         return max
 
 
