@@ -15,5 +15,10 @@ class ValidPalindromeTestCae(unittest.TestCase):
         ans = self.sol.isPalindrome(s="A man, a plan, a canal: Panama")
         self.assertEqual(ans, True)
 
+    def test_second_case(self):
+        ans = self.sol.isPalindrome(s="race a car")
+        self.assertEqual(ans, False)
+
+
 if __name__ == '__main__':
     unittest.main()
