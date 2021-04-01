@@ -2,6 +2,7 @@ import unittest
 from validPalindrome import Solution as ValidPalindrome
 from reorderDataInLogFiles import Solution as ReorderLogFiles
 from mostCommonWord import Solution as MostCommonWord
+from groupAnagrams import Solution as GroupAnagrams
 
 
 class MyTestCase(unittest.TestCase):
@@ -19,6 +20,19 @@ class ValidPalindromeTestCae(unittest.TestCase):
 
     def test_second_case(self):
         ans = self.sol.isPalindrome(s="race a car")
+        self.assertEqual(ans, False)
+
+
+class ValidDequePalindromeTestCae(unittest.TestCase):
+    def setUp(self) -> None:
+        self.sol = ValidPalindrome()
+
+    def test_first_case(self):
+        ans = self.sol.isDequePalindrome(s="A man, a plan, a canal: Panama")
+        self.assertEqual(ans, True)
+
+    def test_second_case(self):
+        ans = self.sol.isDequePalindrome(s="race a car")
         self.assertEqual(ans, False)
 
 
@@ -48,6 +62,23 @@ class MostCommonWordTestCase(unittest.TestCase):
     def test_second_case(self):
         ans = self.sol.mostCommonWord(paragraph="a.", banned=[])
         self.assertEqual(ans, "a")
+
+
+class GroupAnagramsTestCase(unittest.TestCase):
+    def setUp(self) -> None:
+        self.sol = GroupAnagrams()
+
+    def test_first_case(self):
+        ans = self.sol.groupAnagrams(strs=["eat", "tea", "tan", "ate", "nat", "bat"])
+        self.assertListEqual(ans, [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]])
+
+    def test_second_case(self):
+        ans = self.sol.groupAnagrams(strs=[""])
+        self.assertEqual(ans, [[""]])
+
+    def test_third_case(self):
+        ans = self.sol.groupAnagrams(strs=["a"])
+        self.assertEqual(ans, [["a"]])
 
 
 if __name__ == '__main__':
